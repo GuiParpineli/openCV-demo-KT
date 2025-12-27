@@ -24,8 +24,8 @@ class RecognizeController(private val service: RecognitionService) {
         @RequestParam("queryImage") queryImage: MultipartFile
     ): ResponseEntity<MatchResponse> {
         try {
-            val target = loadFromBytesInMemory(targetImage.getBytes(), targetImage.getOriginalFilename())
-            val query = loadFromBytesInMemory(queryImage.getBytes(), queryImage.getOriginalFilename())
+            val target = loadFromBytesInMemory(targetImage.bytes, targetImage.originalFilename)
+            val query = loadFromBytesInMemory(queryImage.bytes, queryImage.originalFilename)
             val queryFeatures: Mat? = service.extractFeatures(query, query)
             val targetFeatures: Mat? = service.extractFeatures(target, target)
             return ResponseEntity.ok(service.matchFeatures(targetFeatures, queryFeatures))
