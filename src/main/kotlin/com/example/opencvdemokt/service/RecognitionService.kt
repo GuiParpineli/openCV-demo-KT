@@ -28,7 +28,7 @@ class RecognitionService {
             Dnn.DNN_TARGET_CPU
         )
 
-    fun extractFeatures(origImage: Mat?, faceImage: Mat?): Mat? {
+    private fun extractFeatures(origImage: Mat?, faceImage: Mat?): Mat? {
         val targetAligned = Mat()
         recognizer.alignCrop(origImage, faceImage, targetAligned)
         val targetFeatures = Mat()
@@ -36,7 +36,9 @@ class RecognitionService {
         return targetFeatures.clone()
     }
 
-    fun matchFeatures(targetFeatures: Mat?, queryFeatures: Mat?): MatchResponse {
+    fun matchFeatures(target: Mat?, query: Mat?): MatchResponse {
+        val queryFeatures: Mat? = this.extractFeatures(query, query)
+        val targetFeatures: Mat? = this.extractFeatures(target, target)
         val distanceType = 0
         val matchThreshold = 0.36
         val score = recognizer.match(targetFeatures, queryFeatures, distanceType)
