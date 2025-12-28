@@ -80,7 +80,7 @@ class RecognitionService {
             try {
                 return resource.file.absolutePath
             } catch (e: IOException) {
-                val tempFile = Files.createTempFile("cvcore_", "_face_recognition.onnx")
+                val tempFile = Files.createTempFile("core_", "_face_recognition.onnx")
                 tempFile.toFile().deleteOnExit()
                 resource.inputStream.use { `in` ->
                     Files.copy(`in`, tempFile, StandardCopyOption.REPLACE_EXISTING)
