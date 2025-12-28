@@ -21,11 +21,6 @@ This project provides a simple REST API to compare two images and determine if t
 
 ## Getting Started
 
-### Clone the repository
-```bash
-git clone <repository-url>
-cd openCV-demo-KT
-```
 
 ### Run the application
 ```bash
